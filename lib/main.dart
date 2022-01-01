@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sample_app/FirstFragment.dart';
-import 'package:sample_app/SecondFragment.dart';
-import 'package:sample_app/ThirdFragment.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp(),
+  runApp(MaterialApp(home: MyApp()
   ));
 }
 
@@ -17,161 +13,98 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  // int count = 0;
-  //
-  // increment() {
-  //   setState(() {
-  //     count = count + 1;
-  //   });
-  // }
-  int currentIndex = 0;
-
-  Widget getCurrentFragment() {
-    switch(currentIndex) {
-      case 1:
-        return FirstFragment();
-      case 2:
-        return SecondFragment();
-      case 3:
-        return ThirdFragment();
-      default:
-        return const Text('sample', style: TextStyle(fontSize: 30.0));
-    }
-  }
-
-  setCurrentIndex(int index){
-    setState(() {
-      currentIndex = index;
-    });
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 40.0, left: 10.0),
-                height: 250.0,
-                width: double.infinity,
-                color: Colors.blue,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Icon(
-                        Icons.account_circle,
-                        size: 70.0,
-                        color: Colors.white
-                    ),
-                    SizedBox(height: 40.0),
-                    Text(
-                      'Jhon Britto',
-                      style: TextStyle(
-                          fontSize: 30.0,
-                          color: Colors.white
-                      ),
-                    ),
-                    Text(
-                      'jhonbritto@gmail.com',
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.white70,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              ListTile(
-                onTap: (){setCurrentIndex(1);},
-                selected: currentIndex == 1 ? true : false,
-                title: const Text(
-                  'Fragment 1',
-                  // style: TextStyle(color: Colors.white),
-                ),
-                leading: const Icon(Icons.playlist_add_check),
-              ),
-              ListTile(
-                onTap: (){setCurrentIndex(2);},
-                selected: currentIndex == 2 ? true : false,
-                title: const Text(
-                  'Fragment 2',
-                  // style: TextStyle(color: Colors.white),
-                ),
-                leading: const Icon(Icons.playlist_add_check),
-              ),
-              ListTile(
-                onTap: (){setCurrentIndex(3);},
-                selected: currentIndex == 3 ? true : false,
-                title: const Text(
-                  'Fragment 3',
-                  // style: TextStyle(color: Colors.white),
-                ),
-                leading: const Icon(Icons.playlist_add_check),
-              ),
-            ],
+        body: Container(
+          padding: const EdgeInsets.all(60.0),
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: [0.1, 0.4, 0.7, 0.9],
+                  colors: [
+                    Color(0xFF8E24AA),
+                    Color(0xFF9C27B0),
+                    Color(0xFFBA68C8),
+                    Color(0xFFCE93D8)
+                  ]
+              )
           ),
-        ),
-        // endDrawer: const Drawer(),
-        bottomNavigationBar: BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(
-                  title: Text('Home'),
-                  icon: Icon(Icons.home)
-              ),
-              BottomNavigationBarItem(
-                  title: Text('Label'),
-                  icon: Icon(Icons.label)
-              ),
-            ]
-        ),
-        appBar: AppBar(
-          title: const Text('Home'),
-          centerTitle: true,
-          // leading: const Icon(Icons.home),
-          // actions: const [
-          //   Icon(Icons.ac_unit),
-          //   Icon(Icons.access_alarm),
-          // ],
-        ),
-        body: getCurrentFragment(),
-        // Center(
-        //     child: Container(
-        //       height: 400.0,
-        //       color: Colors.green,
-        //       child: Row(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         mainAxisAlignment: MainAxisAlignment.start,
-        //         children: [
-        //           Container(
-        //             height: 50.0,
-        //             width: 50.0,
-        //             color: Colors.orange,
-        //             margin: const EdgeInsets.all(5.0),
-        //           ),
-        //           Container(
-        //             height: 50.0,
-        //             width: 50.0,
-        //             color: Colors.orange,
-        //             margin: const EdgeInsets.all(5.0),
-        //           ),
-        //           Container(
-        //             height: 50.0,
-        //             width: 50.0,
-        //             color: Colors.orange,
-        //             margin: const EdgeInsets.all(5.0),
-        //           ),
-        //         ],
-        //       ),
-        //     )
-        // ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: (){increment();},
-        //   child: const Icon(Icons.plus_one),
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      // ),
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Image.asset(
+                  "assets/nike.png",
+                  height: 50.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 50.0),
+                TextFormField(
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.account_circle, color: Colors.white),
+                      hintText: 'Username',
+                      hintStyle: TextStyle(color: Colors.white70)
+                  ),
+                ),
+                const SizedBox(height: 30.0),
+                TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.lock, color: Colors.white),
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.white70)
+                  ),
+                ),
+                const SizedBox(height: 50.0),
+                Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          stops: [0.1, 0.4, 0.7, 0.9],
+                          colors: [
+                            Color(0xFF7B1FA2),
+                            Color(0xFF9C27B0),
+                            Color(0xFF9C27B0),
+                            Color(0xFF8E24AA)
+                          ]
+                      )
+                  ),
+                  child: ButtonTheme(
+                    buttonColor: Colors.white10,
+                    height: 50.0,
+                    minWidth: double.infinity,
+                    child: RaisedButton(
+                      onPressed: (){},
+                      child: const Text(
+                        'LOGIN',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
+                const Text(
+                  'Forget Password ?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
+                ),
+                const SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/google.png', height: 50.0),
+                    const SizedBox(width: 10.0),
+                    Image.asset('assets/twitter.png', height: 65.0),
+                  ],
+                )
+              ],
+            ),
+          ),
+        )
     );
   }
 }
